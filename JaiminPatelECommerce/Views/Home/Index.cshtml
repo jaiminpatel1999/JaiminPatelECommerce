@@ -1,0 +1,34 @@
+﻿@model IEnumerable<JaiminPatelECommerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="hero bg-base-200 text-center py-12">
+    <div class="hero-content">
+        <div>
+            <h1 class="text-5xl font-bold">Welcome to JaiminPatelECommerce</h1>
+            <p class="py-6">Find the best products at unbeatable prices.</p>
+            <p class="mb-4">Shop our latest collections and enjoy exclusive offers!</p>
+            <a class="btn btn-primary btn-lg" asp-controller="Product" asp-action="Index" role="button">Shop Now</a>
+        </div>
+    </div>
+</div>
+
+<h2 class="text-3xl font-semibold mt-8 mb-4">Featured Products</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach (var product in Model)
+    {
+        <div class="card shadow-md">
+            <figure><img src="@product.ImageUrl" alt="@product.Name" class="object-cover h-48 w-full" /></figure>
+            <div class="card-body">
+                <h5 class="card-title text-xl font-bold">@product.Name</h5>
+                <p class="card-text">@product.Description.Substring(0, 100)...</p>
+                <p class="card-text font-bold text-lg">@product.Price.ToString("C")</p>
+                <div class="card-actions justify-end">
+                    <a href="@Url.Action("Details", "Product", new { id = product.ProductId })" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

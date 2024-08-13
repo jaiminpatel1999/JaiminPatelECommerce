@@ -1,0 +1,62 @@
+﻿@model JaiminPatelECommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Create New Product</h2>
+
+<form asp-action="CreateProduct" method="post" class="space-y-4">
+    <div class="form-control">
+        <label asp-for="Name" class="label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.Name)</span>
+        </label>
+        <input asp-for="Name" class="input input-bordered" />
+        <span asp-validation-for="Name" class="text-error"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="Description" class="label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.Description)</span>
+        </label>
+        <textarea asp-for="Description" class="textarea textarea-bordered"></textarea>
+        <span asp-validation-for="Description" class="text-error"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="Price" class="label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.Price)</span>
+        </label>
+        <input asp-for="Price" class="input input-bordered" />
+        <span asp-validation-for="Price" class="text-error"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="Stock" class="label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.Stock)</span>
+        </label>
+        <input asp-for="Stock" class="input input-bordered" />
+        <span asp-validation-for="Stock" class="text-error"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="ImageUrl" class="label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.ImageUrl)</span>
+        </label>
+        <input asp-for="ImageUrl" class="input input-bordered" />
+        <span asp-validation-for="ImageUrl" class="text-error"></span>
+    </div>
+    <div class="form-control">
+        <label asp-for="IsAvailable" class="cursor-pointer label">
+            <span class="label-text">@Html.DisplayNameFor(model => model.IsAvailable)</span>
+            <input asp-for="IsAvailable" class="toggle toggle-primary ml-2" />
+        </label>
+        <span asp-validation-for="IsAvailable" class="text-error"></span>
+    </div>
+    <div class="flex justify-between">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="@Url.Action("ManageProducts", "Admin")" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

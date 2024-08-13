@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+    <p class="text-lg mb-6">Have questions or need help? We're here to assist you.</p>
+    <hr class="mb-6">
+    <form asp-action="Contact" method="post" class="space-y-6">
+        <div class="form-control">
+            <label for="Name" class="label">
+                <span class="label-text">Name</span>
+            </label>
+            <input type="text" class="input input-bordered w-full" id="Name" name="Name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-control">
+            <label for="Email" class="label">
+                <span class="label-text">Email address</span>
+            </label>
+            <input type="email" class="input input-bordered w-full" id="Email" name="Email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-control">
+            <label for="Message" class="label">
+                <span class="label-text">Message</span>
+            </label>
+            <textarea class="textarea textarea-bordered w-full" id="Message" name="Message" rows="5" placeholder="Your message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

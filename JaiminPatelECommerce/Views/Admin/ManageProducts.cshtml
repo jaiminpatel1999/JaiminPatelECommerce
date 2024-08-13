@@ -1,0 +1,38 @@
+﻿@model IEnumerable<JaiminPatelECommerce.Models.Product>
+
+@{
+    ViewData["Title"] = "Manage Products";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Manage Products</h2>
+
+<a href="@Url.Action("CreateProduct", "Admin")" class="btn btn-primary mb-6">Create New Product</a>
+
+<div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td class="font-semibold">@product.Name</td>
+                    <td class="whitespace-pre-line">@product.Description</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.Stock</td>
+                    <td class="space-x-2">
+                        <a href="@Url.Action("EditProduct", "Admin", new { id = product.ProductId })" class="btn btn-warning">Edit</a>
+                        <a href="@Url.Action("DeleteProduct", "Admin", new { id = product.ProductId })" class="btn btn-error">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

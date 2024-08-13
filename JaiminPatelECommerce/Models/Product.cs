@@ -1,0 +1,31 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace JaiminPatelECommerce.Models
+{
+    public class Product
+    {
+        [Key]
+        public int ProductId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+
+        [StringLength(255)]
+        public string ImageUrl { get; set; }
+
+        [Required]
+        public int Stock { get; set; }
+
+        [Required]
+        public bool IsAvailable { get; set; }
+    }
+}

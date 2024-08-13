@@ -1,0 +1,83 @@
+﻿@model JaiminPatelECommerce.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Checkout</h2>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+        <form asp-action="Index" method="post" class="space-y-4">
+            <div class="form-control">
+                <label asp-for="FirstName" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.FirstName)</span>
+                </label>
+                <input asp-for="FirstName" class="input input-bordered" />
+                <span asp-validation-for="FirstName" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="LastName" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.LastName)</span>
+                </label>
+                <input asp-for="LastName" class="input input-bordered" />
+                <span asp-validation-for="LastName" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="Email" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.Email)</span>
+                </label>
+                <input asp-for="Email" class="input input-bordered" />
+                <span asp-validation-for="Email" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="Address" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.Address)</span>
+                </label>
+                <input asp-for="Address" class="input input-bordered" />
+                <span asp-validation-for="Address" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="CreditCardNumber" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.CreditCardNumber)</span>
+                </label>
+                <input asp-for="CreditCardNumber" class="input input-bordered" />
+                <span asp-validation-for="CreditCardNumber" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="ExpiryDate" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.ExpiryDate)</span>
+                </label>
+                <input asp-for="ExpiryDate" class="input input-bordered" />
+                <span asp-validation-for="ExpiryDate" class="text-error"></span>
+            </div>
+            <div class="form-control">
+                <label asp-for="CVV" class="label">
+                    <span class="label-text">@Html.DisplayNameFor(model => model.CVV)</span>
+                </label>
+                <input asp-for="CVV" class="input input-bordered" />
+                <span asp-validation-for="CVV" class="text-error"></span>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg">Place Order</button>
+        </form>
+    </div>
+    <div>
+        <h4 class="text-xl font-semibold mb-4">Your Order</h4>
+        <ul class="list-group">
+            @foreach (var item in Model.CartItems)
+            {
+                <li class="list-group-item flex justify-between items-center">
+                    <span>@item.ProductName</span>
+                    <span class="badge badge-primary badge-pill">@item.Quantity x @item.Price.ToString("C")</span>
+                </li>
+            }
+        </ul>
+        <h4 class="text-xl font-semibold mt-6">Total: @Model.TotalAmount.ToString("C")</h4>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

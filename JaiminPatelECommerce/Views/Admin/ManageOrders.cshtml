@@ -1,0 +1,35 @@
+﻿@model IEnumerable<JaiminPatelECommerce.Models.Order>
+
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Manage Orders</h2>
+
+<div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td class="font-semibold">@order.OrderId</td>
+                    <td>@order.Customer.NormalizedUserName</td>
+                    <td>@order.OrderDate.ToString("d")</td>
+                    <td>@order.TotalAmount.ToString("C")</td>
+                    <td>
+                        <a href="@Url.Action("ViewOrder", "Admin", new { id = order.OrderId })" class="btn btn-info">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

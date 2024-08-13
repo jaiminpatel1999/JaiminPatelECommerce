@@ -1,0 +1,34 @@
+﻿@model JaiminPatelECommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div>
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="rounded-lg shadow-lg object-cover w-full h-96" />
+    </div>
+    <div>
+        <h2 class="text-3xl font-bold mb-4">@Model.Name</h2>
+        <p class="mb-4">@Model.Description</p>
+        <p class="text-lg font-semibold mb-2"><strong>Price: @Model.Price.ToString("C")</strong></p>
+        <p class="text-lg mb-6"><strong>Available Stock: @Model.Stock</strong></p>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="space-x-2 mt-4">
+                <a href="@Url.Action("Edit", "Product", new { id = Model.ProductId })" class="btn btn-warning">Edit</a>
+                <a href="@Url.Action("Delete", "Product", new { id = Model.ProductId })" class="btn btn-error">Delete</a>
+            </div>
+        }
+        else
+        {
+            <form asp-action="AddToCart" asp-controller="Cart" method="post" class="mt-4">
+                <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                <button type="submit" class="btn btn-success">Add to Cart</button>
+            </form>
+        }
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Product")" class="btn btn-primary mt-6">Back to Products</a>

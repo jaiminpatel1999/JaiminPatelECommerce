@@ -1,0 +1,28 @@
+﻿@model JaiminPatelECommerce.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2 class="text-3xl font-semibold mb-6">Order Details</h2>
+
+<div class="space-y-4 mb-6">
+    <p><strong>Order ID:</strong> @Model.OrderId</p>
+    <p><strong>Customer Name:</strong> @Model.Customer.FirstName @Model.Customer.LastName</p>
+    <p><strong>Customer Email:</strong> @Model.Customer.Email</p>
+    <p><strong>Date:</strong> @Model.OrderDate.ToString("f")</p>
+    <p><strong>Total Amount:</strong> @Model.TotalAmount.ToString("C")</p>
+</div>
+
+<h4 class="text-2xl font-semibold mb-4">Order Items</h4>
+<ul class="list-group space-y-2">
+    @foreach (var item in Model.OrderItems)
+    {
+        <li class="list-group-item flex justify-between items-center p-4 border rounded-lg shadow">
+            <span>@item.Product.Name</span>
+            <span class="badge badge-primary">@item.Quantity x @item.UnitPrice.ToString("C")</span>
+        </li>
+    }
+</ul>
+
+<a href="@Url.Action("ManageOrders", "Admin")" class="btn btn-secondary mt-6">Back to Orders</a>

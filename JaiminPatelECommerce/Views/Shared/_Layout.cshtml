@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - JaiminPatelECommerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar bg-base-100 shadow-md">
+            <div class="flex-1">
+                <a class="btn btn-ghost normal-case text-xl" href="@Url.Action("Index", "Home")">JaiminPatelECommerce</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1 hidden lg:flex">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+                    <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a asp-controller="Admin" asp-action="Index">Admin Dashboard</a></li>
+                        }
+                        <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
+                        <li>
+                            <form method="post" asp-controller="Account" class="p-0 m-0 inline" asp-action="Logout">
+                                <button type="submit" class="btn btn-ghost btn-sm">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                    }
+                </ul>
+                <div class="dropdown lg:hidden">
+                    <label tabindex="0" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                    </label>
+                    <ul tabindex="0" class="dropdown-content mt-3 shadow bg-base-100 rounded-box w-52">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Product" asp-action="Index">Products</a></li>
+                        <li><a asp-controller="Cart" asp-action="Index">Cart</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a asp-controller="Admin" asp-action="Index">Admin Dashboard</a></li>
+                            }
+                            <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
+                            <li>
+                                <form method="post" asp-controller="Account" class="p-0 m-0" asp-action="Logout">
+                                    <button type="submit" class="btn btn-ghost btn-sm">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                            <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container mx-auto px-4">
+        <main role="main" class="py-6">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer footer-center bg-base-200 text-base-content rounded p-10">
+        <nav class="grid grid-flow-col gap-4">
+            <a href="@Url.Action("About", "Home")" class="link link-hover">About us</a>
+            <a href="@Url.Action("Contact", "Home")" class="link link-hover">Contact</a>
+            <a href="@Url.Action("Privacy", "Home")" class="link link-hover">Privacy</a>
+        </nav>
+        <aside>
+            <p>Copyright ©2024 - All right reserved JaiminPatelECommerce</p>
+        </aside>
+    </footer>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
