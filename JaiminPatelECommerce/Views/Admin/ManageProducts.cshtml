@@ -27,9 +27,9 @@
                     <td class="whitespace-pre-line">@product.Description</td>
                     <td>@product.Price.ToString("C")</td>
                     <td>@product.Stock</td>
-                    <td class="space-x-2">
-                        <a href="@Url.Action("EditProduct", "Admin", new { id = product.ProductId })" class="btn btn-warning">Edit</a>
-                        <a href="@Url.Action("DeleteProduct", "Admin", new { id = product.ProductId })" class="btn btn-error">Delete</a>
+                    <td class="join">
+                        <a href="@Url.Action("EditProduct", "Admin", new { id = product.ProductId })" class="btn btn-warning join-item btn-sm">Edit</a>
+                        <a href="@Url.Action("Delete", "Product", new { id = product.ProductId })" class="btn btn-error join-item btn-sm">Delete</a>
                     </td>
                 </tr>
             }

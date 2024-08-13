@@ -27,7 +27,7 @@ namespace JaiminPatelECommerce.Controllers
         // Action to manage products (list all products)
         public async Task<IActionResult> ManageProducts()
         {
-            var products = await _productService.GetAvailableProducts();
+            var products = await _productService.GetAllProducts();
             return View(products);
         }
 
@@ -96,14 +96,6 @@ namespace JaiminPatelECommerce.Controllers
             return View(product);
         }
 
-        // Action to handle the deletion of a product
-        [HttpPost, ActionName("DeleteProduct")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteProductConfirmed(int id)
-        {
-            await _productService.DeleteProduct(id);
-            return RedirectToAction(nameof(ManageProducts));
-        }
 
         // Action to view all orders
         public async Task<IActionResult> ManageOrders()

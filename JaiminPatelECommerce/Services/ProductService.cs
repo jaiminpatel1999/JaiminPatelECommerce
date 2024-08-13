@@ -21,6 +21,13 @@ namespace JaiminPatelECommerce.Services
                                  .ToListAsync();
         }
 
+        public async Task<List<Product>> GetAllProducts()
+        {
+            return await _context.Products
+                                 .ToListAsync();
+        }
+
+
         public async Task<List<Product>> GetTopProducts()
         {
             return await _context.Products
@@ -34,7 +41,7 @@ namespace JaiminPatelECommerce.Services
         public async Task<Product> GetProductById(int id)
         {
             return await _context.Products
-                                 .FirstOrDefaultAsync(p => p.ProductId == id && p.IsAvailable && p.Stock > 0);
+                                 .FirstOrDefaultAsync(p => p.ProductId == id && p.Stock > 0);
         }
 
         // Method to add a new product (admin functionality)

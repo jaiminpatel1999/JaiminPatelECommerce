@@ -35,7 +35,6 @@ namespace JaiminPatelECommerce.Configurations
                    .HasForeignKey(oi => oi.OrderId)
                    .OnDelete(DeleteBehavior.Cascade); // Cascade delete to remove OrderItems when an Order is deleted
 
-            // Optionally, you can add index on commonly queried columns
             builder.HasIndex(o => o.UserId).HasDatabaseName("IX_Order_UserId");
             builder.HasIndex(o => o.OrderDate).HasDatabaseName("IX_Order_OrderDate");
         }
