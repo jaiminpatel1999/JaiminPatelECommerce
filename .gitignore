@@ -47,8 +47,6 @@ artifacts/
 *.sln.docstates
 *.njsproj
 *.njsproj.user
-*.sln
-*.csproj
 *.csproj.user
 *.pyc
 *.dbml.layout
